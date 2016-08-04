@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+	
+	@font-face{
+
+    font-family: DV;
+    src:url('../fonts/CaviarDreams.ttf');
+
+	}
+	@font-face{
+	  font-family: CV;
+	  src:url('../fonts/Champagne&Limousines.ttf');
+	}
+	@font-face{
+	  font-family: myFont;}
+  	
+	body{
+		
+
+	}  
+
+	#start-btn{
+
+		position: absolute;
+		top:60%;
+		left: 50%;
+		transform: translate(-50%,0);
+		padding: 8px;
+		padding-right: 33px;
+		padding-left: 30px;
+		border-radius: 10px;
+		font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+
+	}
+	#display{
+		position: absolute;
+		top: 34%;
+		left: 47%;
+		transform: translate(-50%,10);
+		color: red;
+		font-size: 100px;
+		opacity: 0.5;
+	}
+	#intro h1{
+
+		position: absolute;
+		top: 14%;
+		letter-spacing: 50px;
+		color: red;
+		font-size: 150px;
+		opacity: 0.5;
+		left: 53%;
+		transform: translate(-50%,0);
+
+	}
+	#intro h4{
+
+		position: absolute;
+		top: 39%;
+		left: 50%;
+		color: red;
+		letter-spacing: 10px;
+		font-size: 40px;
+		opacity: 0.5;
+		opacity: 0.5;
+		transform: translate(-50%,0);
+
+
+	}
+	#go{
+		position: absolute;
+		top: 20%;
+		left: 50%;
+		transform: translate(-50%,0);
+		color: red;
+		font-size: 200px;
+		opacity: 0.5;
+	}
+	#playerOneName{
+		position: absolute;
+		top:53%;
+		font-size: 20px;
+		left: 50%;
+		transform: translate(-50%,0);
+		font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+	}
+	#winnerDisplay{
+		position: absolute;
+		top: 40%;
+		left: 50%;
+		transform:translate(-50%,0);
+		color: red;
+		font-size: 70px;
+		opacity: 0.5;	
+	}
+	#difficulty{
+
+		position: absolute;
+		color: white;
+		top:48%;
+		left: 50%;
+		transform: translate(-50%,0);
+		letter-spacing: 2px;
+		font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+	}
+
+
+	canvas{
+
+			display: block;
+	        padding: 0;
+	        margin: 0 auto;
+	        padding-bottom: 2%;
+	        margin-top: 3%;
+	}
+
+
+	@media(max-width:1200px) {
+    
+        #canvas {
+            width: 100%;
+            height: auto;
+        }
+        #winnerDisplay{
+        	font-size: 50px;
+        }
+      
+    }
+
+
+
+	
+	.my-container{
+			background-color: black;
+			background-image: url('bg.png');
+
+	}	
+	
+	#error{
+
+			position: absolute;
+
+	}
+	#error h1{
+		visibility: hidden;
+		
+	}
+@media screen and (max-width:800px){	
+	.my-container{
+		display: none;
+	}
+	#error h1{
+		visibility: visible;
+		margin-top: 20%;
+		color: white;	
+	}
+	*{
+		background-image: url("bg.png");
+	}
+
+}
+	</style>
+
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+
+</head>
+		<center>
+			
+				<div id="error">
+						
+					<h1 style="font-weight:lighter;">SORRY! your device is to small.</h1>
+
+				</div>
+
+		</center>
+<body>	
+
+	<div class="my-container">
+		
+
+		<center>
+
+		<form id="difficulty"> 
+		  <input type="radio" 	name = "diff"  id="easy" value="Easy"> Easy <span style="color: red;">|</span>
+		  <input type="radio"	name = "diff"  id="medium" value="Medium" checked="checked"> Medium <span style="color: red;">|</span>
+		  <input type="radio"	name = "diff"  id="hard" value="hard"> Bring it On!
+		</form>
+
+		<canvas id="canvas" width="1000px" height="550px"></canvas>	
+
+		<input type="button" id="start-btn" class="btn btn-danger" value="">
+		<div id="display"></div>
+		<div id="intro"><h1>PONG</h1><br><h4>5 points to win</h4></div>
+		<div id="winnerDisplay"></div>
+		<div id="go"></div>
+		<div id = "winningMsg"></div>
+		<input type="text" id="playerOneName" placeholder="Your Name">		
+		</center>
+		
+
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>		
+		<script type="text/javascript" src = "main.js" ></script>
+		<script type="text/javascript" src = "draw.js" ></script>
+		<script type="text/javascript" src = "control.js" ></script>
+	</div>		
+
+</body>
+</html>
